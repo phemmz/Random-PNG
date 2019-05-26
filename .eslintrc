@@ -1,0 +1,24 @@
+{
+  "root": true,
+  "extends": "airbnb-base",
+  "plugins": [
+    "import"
+  ],
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true,
+    "jasmine": true
+  },
+  "globals": {
+    "window": true,
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js",".jsx"]
+      }
+    }
+  }
+}
