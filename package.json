@@ -1,14 +1,38 @@
 {
   "name": "random-png",
-  "version": "1.0.0",
-  "description": "A random phone number generator app",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.1.4",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nodemon": "^1.19.1",
+    "nyc": "^14.1.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
+  },
   "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "yarn server:test && react-scripts test",
+    "eject": "react-scripts eject",
     "serve": "node dist/app.js",
     "serve:dev": "nodemon --watch src/server --exec babel-node -- src/server/app.js",
     "build-server": "babel -d ./dist ./src/server -s",
-    "test": "nyc mocha src/server/test/* --require babel-core/register --exit",
+    "server:test": "nyc mocha src/server/test/* --require babel-core/register --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "repository": {
     "type": "git",
@@ -25,23 +49,16 @@
   "bugs": {
     "url": "https://github.com/phemmz/Random-PNG/issues"
   },
-  "homepage": "https://github.com/phemmz/Random-PNG#readme",
-  "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "body-parser": "^1.19.0",
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "coveralls": "^3.0.3",
-    "eslint": "4.10.0",
-    "express": "^4.17.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^6.1.4",
-    "mocha-lcov-reporter": "^1.3.0",
-    "nodemon": "^1.19.1",
-    "nyc": "^14.1.1"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
