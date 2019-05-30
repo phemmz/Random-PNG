@@ -10,7 +10,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 
 app.use('/api/v1', routes);
 
-const { PORT = 3000 } = process.env;
+const { PORT = 2003 } = process.env;
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
