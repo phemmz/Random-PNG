@@ -29,7 +29,8 @@
     "serve:dev": "nodemon --watch src/server --exec babel-node -- src/server/app.js",
     "build-server": "babel -d ./dist ./src/server -s",
     "server:test": "nyc mocha src/server/test/* --require babel-core/register --exit",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "postinstall": "yarn build && yarn build-server"
   },
   "eslintConfig": {
     "extends": "react-app"
