@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyparser from 'body-parser';
+import path from 'path';
 
 import routes from './routes';
 
@@ -9,6 +10,12 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 app.use('/api/v1', routes);
+
+app.use(express.static('build'));
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const { PORT = 2003 } = process.env;
 
