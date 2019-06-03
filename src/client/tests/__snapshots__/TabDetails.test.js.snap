@@ -1,5 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HomeTab should render correctly 1`] = `ShallowWrapper {}`;
-
 exports[`TabDetails should render correctly 1`] = `ShallowWrapper {}`;

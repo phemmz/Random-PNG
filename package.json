@@ -26,7 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "yarn server:test && react-scripts test",
+    "test": "yarn server:test && react-scripts test -u",
     "eject": "react-scripts eject",
     "serve": "node dist/app.js",
     "serve:dev": "nodemon --watch src/server --exec babel-node -- src/server/app.js",
