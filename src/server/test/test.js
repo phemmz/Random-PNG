@@ -29,4 +29,15 @@ describe('App test', () => {
     expect(response.body.generatedNumberData).to.exist;
     expect(response.body.generatedNumberData.totalPhoneNumbersGenerated).to.equal(10000);
   });
+
+  it('should get all saved filenames', async () => {
+    const response = await chai.request(app)
+        .get('/api/v1/get-saved-filenames')
+        .send()
+        .set('Accept', 'application/json');
+    
+    expect(response.status).to.equal(200);
+    expect(response.body.success).to.equal(true);
+    expect(response.body.filenames).to.exist;
+  });
 });

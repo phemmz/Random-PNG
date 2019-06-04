@@ -13,11 +13,11 @@ app.use('/api/v1', routes);
 
 app.use(express.static('build'));
 
-app.get('/*', function(req, res) {
+app.get('/*', (_, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-const { PORT = 2003 } = process.env;
+const { PORT = 3000 } = process.env;
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 

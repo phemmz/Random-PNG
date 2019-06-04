@@ -41,6 +41,24 @@ const generatePhoneNumbers = (req, res) => {
   }
 };
 
+const getSavedFileNames = (_, res) => {
+  try {
+    const filenames = fs.readdirSync(path.join(__dirname, '..', 'db'));
+
+    res.status(200).json({
+      filenames: filenames.filter(filename => filename !== '.gitignore'),
+      success: true,
+      message: 'Files retrieved successfully',
+    });
+  } catch(error) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve files!',
+    });
+  }
+};
+
 export {
-  generatePhoneNumbers
+  generatePhoneNumbers,
+  getSavedFileNames
 };
