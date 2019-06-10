@@ -4,21 +4,32 @@ import {
   TabDetails
 } from './Shared';
 
-const HistoryTab = ({ getPastDetails }) => {
+const HistoryTab = ({
+  filenames, getFileDetails, generatedNumberData
+}) => {
   return (
     <div className="hometab--container">
       <div className="tab--content">
         <div className="tab--content--left">
           <span className="history--list--title">Previously Generated Numbers</span>
-          <ul>
-            <li onClick={getPastDetails}>18298192.txt</li>
-            <li onClick={getPastDetails}>18298192.txt</li>
-            <li onClick={getPastDetails}>18298192.txt</li>
+          <ul className="history--list--container">
+            {filenames.length ?
+              filenames.map(filename =>
+                <li
+                  key={filename}
+                  onClick={() => getFileDetails(filename)}
+                >{filename}</li>
+              ) : null
+            }
           </ul>
         </div>
         <div className="tab--content--right">
-          <span className="history--list--title">18298192.txt</span>
-          <TabDetails />
+          <div className="generated--title--container">
+            <span className="history--list--title">{generatedNumberData.generatedPhoneNumberId}</span>
+          </div>
+          <TabDetails
+            generatedNumberData={generatedNumberData}
+          />
         </div>
       </div>
     </div>

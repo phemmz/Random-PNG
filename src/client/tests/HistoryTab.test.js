@@ -5,7 +5,15 @@ import HistoryTab from "../components/HistoryTab";
 
 describe("HistoryTab", () => {
   const props = {
-    getPastDetails: jest.fn()
+    getFileDetails: jest.fn(),
+    filenames: ['number-1560053355220.json'],
+    generatedNumberData: {
+      generatedPhoneNumberId: 'number-1560053355220',
+      generatedPhoneNumbers: ['0101507997', '0999875346'],
+      min: '0101507997',
+      max: '0999875346',
+      totalPhoneNumbersGenerated: 1000
+    }
   };
   const wrapper = shallow(<HistoryTab {...props} />);
 

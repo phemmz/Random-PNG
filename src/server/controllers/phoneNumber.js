@@ -4,9 +4,10 @@ import path from 'path';
 const generatePhoneNumbers = (req, res) => {
   try {
     const { totalPhoneNumbersToGenerate } = req.body;
+    const parsedTotalPhoneNumbersToGenerate = parseInt(totalPhoneNumbersToGenerate, 10)
     let counter = 0;
     const generatedPhoneNumbers = new Set();
-    const totalNumbers = totalPhoneNumbersToGenerate && totalPhoneNumbersToGenerate <= 10000 ? totalPhoneNumbersToGenerate : 10000;
+    const totalNumbers = parsedTotalPhoneNumbersToGenerate && parsedTotalPhoneNumbersToGenerate <= 10000 ? parsedTotalPhoneNumbersToGenerate : 10000;
 
     while(counter < totalNumbers) {
       const randomPhoneNumber = `0${Math.floor(Math.random() * (999999999 - 100000000)) + 100000000}`;
@@ -20,7 +21,7 @@ const generatePhoneNumbers = (req, res) => {
       generatedPhoneNumbers: sortedGeneratedPhoneNumbers,
       generatedPhoneNumberId: `number-${new Date().getTime()}`,
       min: sortedGeneratedPhoneNumbers[0],
-      max: sortedGeneratedPhoneNumbers[totalPhoneNumbersToGenerate - 1],
+      max: sortedGeneratedPhoneNumbers[totalNumbers - 1],
       totalPhoneNumbersGenerated: totalNumbers
     }
 

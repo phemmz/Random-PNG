@@ -1,11 +1,12 @@
 import React from 'react';
 
-const PngButton = ({ handleClick, classNames }) => {
+const PngButton = ({ handleClick, classNames, btnText, loading = false }) => {
   return (
-    <div
+    <button
       className={`generate--numbers--btn ${classNames}`}
       onClick={handleClick}
-    >Generate Phone Numbers</div>
+      disabled={loading}
+    >{btnText}</button>
   );
 }
 

@@ -5,10 +5,13 @@ import { TabDetails } from "../components/Shared";
 
 describe("TabDetails", () => {
   const props = {
-    totalPhoneNumbersGenerated: 200,
-    minNumber: '0102010201',
-    maxNumber: '0902010201',
-    numberList: 'asas'
+    generatedNumberData: {
+      generatedPhoneNumberId: 'number-1560053355220',
+      generatedPhoneNumbers: ['0101507997', '0999875346'],
+      min: '0101507997',
+      max: '0999875346',
+      totalPhoneNumbersGenerated: 1000
+    }
   };
   const wrapper = shallow(<TabDetails {...props} />);
 
