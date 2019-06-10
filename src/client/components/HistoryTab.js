@@ -5,7 +5,7 @@ import {
 } from './Shared';
 
 const HistoryTab = ({
-  filenames, getFileDetails, generatedNumberData, selectedFile
+  filenames, getFileDetails, generatedNumberData
 }) => {
   return (
     <div className="hometab--container">
