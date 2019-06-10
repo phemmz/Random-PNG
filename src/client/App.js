@@ -3,6 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import HomeTab from './components/HomeTab';
 import HistoryTab from './components/HistoryTab';
+import makeApiRequest from './helpers/makeApiRequest';
 
 import './App.css';
 
@@ -10,15 +11,72 @@ class App extends React.Component {
   state = {
     tabSelected: 'home',
     numberGenerated: false,
-    totalAmountToGenerate: 0
+    isGenerating: false,
+    generatedNumberData: {},
+    errorMessage: '',
+    totalAmountToGenerate: 1000,
+    filenames: [],
+    selectedFile: ''
   };
 
-  generateRandomPhoneNumbers = () => {
+  onClick = () => {
     this.setState({ numberGenerated: true });
   }
 
+  generateRandomPhoneNumbers = async () => {
+    this.setState({ isGenerating: true, errorMessage: '' });
+    const response = await makeApiRequest('generate-numbers', 'POST', {
+      totalPhoneNumbersToGenerate: this.state.totalAmountToGenerate
+    });
+
+    if (response && response.success) {
+      this.setState({
+        generatedNumberData: response.generatedNumberData,
+        isGenerating: false,
+        errorMessage: ''
+      });
+    } else {
+      this.setState({
+        errorMessage: 'Failed to generate phone numbers! Please try again!!',
+        isGenerating: false
+      });
+    }
+  }
+
   onTabChange = (tabSelected) => {
+    if (tabSelected === 'history') {
+      this.getHistory();
+    }
+
     this.setState({ tabSelected });
+  }
+
+  getHistory = async () => {
+    const response = await makeApiRequest('get-saved-filenames', 'GET');
+
+    if (response && response.success) {
+      this.setState({
+        filenames: [...response.filenames].reverse(),
+      });
+    } else {
+      this.setState({
+        errorMessage: 'Failed to get saved filenames',
+      });
+    }
+  }
+
+  getFileDetails = async (filename) => {
+    const response = await makeApiRequest(`get-file-details/${filename}`, 'GET');
+
+    if (response && response.success) {
+      this.setState({
+        generatedNumberData: response.fileDetails,
+      });
+    } else {
+      this.setState({
+        errorMessage: 'Failed to get file details',
+      });
+    }
   }
 
   handleInputChange = (event) => {
@@ -31,7 +89,8 @@ class App extends React.Component {
 
   render() {
     const {
-      tabSelected, numberGenerated, totalAmountToGenerate
+      tabSelected, numberGenerated, totalAmountToGenerate, isGenerating,
+      errorMessage, generatedNumberData, filenames, selectedFile
     } = this.state;
 
     return (
@@ -54,12 +113,19 @@ class App extends React.Component {
                 totalAmountToGenerate={totalAmountToGenerate}
                 handleInputChange={this.handleInputChange}
                 generateRandomPhoneNumbers={this.generateRandomPhoneNumbers}
+                onClick={this.onClick}
+                isGenerating={isGenerating}
+                errorMessage={errorMessage}
+                generatedNumberData={generatedNumberData}
               />
             }
             {tabSelected === 'history' &&
               <HistoryTab
+                filenames={filenames}
                 handleInputChange={this.handleInputChange}
-                getPastDetails={this.getPastDetails}
+                getFileDetails={this.getFileDetails}
+                generatedNumberData={generatedNumberData}
+                selectedFile={selectedFile}
               />
             }
           </div>

@@ -7,7 +7,8 @@ import {
 } from './Shared';
 
 const HomeTab = ({
-  numberGenerated, handleInputChange, generateRandomPhoneNumbers, totalAmountToGenerate
+  numberGenerated, handleInputChange, generateRandomPhoneNumbers,
+  totalAmountToGenerate, onClick, isGenerating, errorMessage, generatedNumberData
 }) => {
   return (
     <div className="hometab--container">
@@ -26,17 +27,21 @@ const HomeTab = ({
             </div>
             <PngButton
               classNames="w-100"
+              btnText={isGenerating ? "Generating..." : "Generate"}
+              loading={isGenerating}
               handleClick={generateRandomPhoneNumbers}
             />
+            {errorMessage ? <span className="error--message">{errorMessage}</span> : null}
           </div>
           <div className="tab--content--right">
-            <TabDetails />
+            <TabDetails generatedNumberData={generatedNumberData} />
           </div>
         </div> :
         <div className={classnames("tab--content", "tab--content--active")}>
           <span className="tab--title"><span className="tab--title--bold">Random-PNG</span> is the app that generates random phone numbers for you. Each number is unique and has a 10 digit length.</span>
           <PngButton
-            handleClick={generateRandomPhoneNumbers}
+            btnText="Generate Phone Numbers"
+            handleClick={onClick}
           />
         </div>
       }

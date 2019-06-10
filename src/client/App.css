@@ -101,6 +101,7 @@
   width: 100%;
   height: 4rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 0.5rem;
@@ -108,6 +109,7 @@
   border-radius: .25rem;
   padding: .2rem 1.25rem;
   background-color: #fff;
+  overflow-y: auto;
 }
 
 .tab--details--container:hover {
@@ -181,6 +183,10 @@
   box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
 }
 
+.generate--numbers--btn:active {
+  border: 0;
+}
+
 .details--label {
   font-size: 0.7rem;
   color: #586069;
@@ -188,6 +194,10 @@
 
 .history--list--title {
   font-weight: bold;
+}
+
+.generated--title--container {
+  margin-bottom: 1rem;
 }
 
 ul > li {
@@ -204,4 +214,19 @@ ul > li {
 
 .w-25 {
   width: 25%;
+}
+
+.error--message {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: red;
+}
+
+.history--list--container {
+  height: 80%;
+  overflow-y: auto;
+}
+
+.db {
+  display: block;
 }
