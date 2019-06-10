@@ -2,73 +2,35 @@
 [![Coverage Status](https://coveralls.io/repos/github/phemmz/Random-PNG/badge.svg?branch=chore-setup-travis-ci)](https://coveralls.io/github/phemmz/Random-PNG?branch=chore-setup-travis-ci)
 
 # Random-PNG
-A random phone number generator app
+Random-PNG is an application that randomly generates unique phone numbers.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Development
+This application was developed using ExpressJS for the server side and React for the frontend part.
 
-## Available Scripts
+## Installation
+1. Start up your terminal (or Command Prompt on Windows OS).
+2. Ensure that you have node installed on your PC.
+3. Clone the repository by entering the command in your terminal:
+  ```git clone https://github.com/phemmz/Random-PNG.git```
+4. Navigate to the project root folder using cd random-png on your terminal (or command prompt).
+5. After cloning, install the application's dependencies with the command `npm install`.
+6. Run `yarn start && yarn serve:dev` to start the app in development mode.<br>
 
-In the project directory, you can run:
+## Tests
+*  The tests have been written using **[Jest](https://jestjs.io/)**, **[Mocha](https://www.npmjs.com/package/mocha)** and **[Chai](https://www.npmjs.com/package/chai)**.
+*  Issue the following command on terminal.
+  *  `yarn test`
+*  This will run both server side and client side tests. If the tests are successful, they will complete without failures or errors.
 
-### `npm start`
+## How To Contribute
+- Fork this repository
+- Clone the repository
+- Create your feature branch locally with ``` git checkout -b your-feature-branch-name ```
+- Commit your changes using ``` git commit -m 'Commit name' ```
+- Push your changes to your remote branch with ``` git push -u origin your-feature-branch-name ```
+- Open a pull request to the develop branch, and describe how your feature works
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## License
+The MIT License
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### Author: Adetunji Femi
