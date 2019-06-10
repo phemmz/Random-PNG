@@ -27,6 +27,10 @@ const generatePhoneNumbers = (req, res) => {
 
     const filePath = `db/number-${new Date().getTime()}.json`;
 
+    if (!fs.existsSync(path.join(__dirname, '..', 'db'))) {
+      fs.mkdirSync(path.join(__dirname, '..', 'db'));
+    }
+
     fs.writeFileSync(path.join(__dirname, '..', filePath), JSON.stringify(generatedNumberData));
     res.status(201).json({
       generatedNumberData,
@@ -59,7 +63,26 @@ const getSavedFileNames = (_, res) => {
   }
 };
 
+const getFileDetails = (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const fileDetails = fs.readFileSync(path.join(__dirname, '..', `db/${filename}`), 'utf8');
+
+    res.status(200).json({
+      fileDetails: JSON.parse(fileDetails),
+      success: true,
+      message: 'File details retrieved successfully',
+    });
+  } catch(error) {
+    res.status(404).json({
+      success: false,
+      message: 'Failed to get file details!',
+    });
+  }
+}
+
 export {
   generatePhoneNumbers,
-  getSavedFileNames
+  getSavedFileNames,
+  getFileDetails
 };
