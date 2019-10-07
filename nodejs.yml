@@ -1,0 +1,40 @@
+---
+  - hosts: all
+    become: true
+    remote_user: ubuntu
+    vars:
+      NODEJS_VERSION: 8
+
+    tasks:
+      - name: Update cache
+        apt:
+          update_cache: yes
+      
+      - name: Install apt_key dependencies
+        apt:
+          name: [python-urllib3, python-openssl, python-pyasn1, python-pip, git-all]
+
+      - name: Install apt_key dependencies
+        command: pip install ndg-httpsclient
+        when: ansible_distribution == 'Ubuntu' or ansible_distribution_release == 'trusty'
+    
+      - name: Add gpg key for NodeJS LTS
+        apt_key:
+          url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+          state: present
+    
+      - name: Install the nodejs LTS repos
+        apt_repository:
+          repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
+          state: present
+          update_cache: yes
+
+      - name: Install Node.js
+        apt:
+          name: nodejs
+          state: present
+    
+      - name: Clone Random PNG repository
+        git:
+          repo: "https://github.com/phemmz/Random-PNG.git"
+          dest: /home/ubuntu/Random-PNG
