@@ -1,7 +1,6 @@
 ---
   - hosts: all
     become: true
-    remote_user: ubuntu
     vars:
       NODEJS_VERSION: 8
 
@@ -33,8 +32,23 @@
         apt:
           name: nodejs
           state: present
+
+      - name: Add gpg key for Yarn
+        apt_key:
+          url: "https://dl.yarnpkg.com/debian/pubkey.gpg"
+          state: present
+      
+      - name: Add Yarn repository
+        apt_repository:
+          repo: "deb https://dl.yarnpkg.com/debian/ stable main"
+          filename: yarn
+      
+      - name: Install Yarn
+        apt:
+          name: yarn
     
       - name: Clone Random PNG repository
+        become_user: ubuntu
         git:
           repo: "https://github.com/phemmz/Random-PNG.git"
           dest: /home/ubuntu/Random-PNG
