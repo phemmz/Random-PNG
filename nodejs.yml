@@ -1,0 +1,54 @@
+---
+  - hosts: all
+    become: true
+    vars:
+      NODEJS_VERSION: 8
+
+    tasks:
+      - name: Update cache
+        apt:
+          update_cache: yes
+      
+      - name: Install apt_key dependencies
+        apt:
+          name: [python-urllib3, python-openssl, python-pyasn1, python-pip, git-all]
+
+      - name: Install apt_key dependencies
+        command: pip install ndg-httpsclient
+        when: ansible_distribution == 'Ubuntu' or ansible_distribution_release == 'trusty'
+    
+      - name: Add gpg key for NodeJS LTS
+        apt_key:
+          url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+          state: present
+    
+      - name: Install the nodejs LTS repos
+        apt_repository:
+          repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
+          state: present
+          update_cache: yes
+
+      - name: Install Node.js
+        apt:
+          name: nodejs
+          state: present
+
+      - name: Add gpg key for Yarn
+        apt_key:
+          url: "https://dl.yarnpkg.com/debian/pubkey.gpg"
+          state: present
+      
+      - name: Add Yarn repository
+        apt_repository:
+          repo: "deb https://dl.yarnpkg.com/debian/ stable main"
+          filename: yarn
+      
+      - name: Install Yarn
+        apt:
+          name: yarn
+    
+      - name: Clone Random PNG repository
+        become_user: ubuntu
+        git:
+          repo: "https://github.com/phemmz/Random-PNG.git"
+          dest: /home/ubuntu/Random-PNG
